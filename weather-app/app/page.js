@@ -1,6 +1,8 @@
 "use client";
 
 import { use, useState } from 'react'
+import SearchCity from './Components/search-city';
+import WeatherData from './Components/weather-data';
 
 const api = {
   key: "a1cbff707be4edcb35cb530eb679456d",
@@ -9,13 +11,14 @@ const api = {
 
 export default function Home() {
 
-  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState(null);
 
   const handleSearch = () => {
     fetch(`${api.baseURL}weather?q=${city}&units=metric&APPID=${api.key}`)
     .then(res => res.json())
     .then((result) => {
       console.log(result);
+      setWeather(result);
     })
   }
 
@@ -24,21 +27,15 @@ export default function Home() {
       {/* header */}
       <header>Weather app</header>
 
-      {/* search box */}
-      <div>
-        <input
-          type='text'
-          placeholder='Enter City Name'
-          onChange={(e) => setCity(e.target.value)}
-          className='text-black'
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+      <SearchCity onSearch={handleSearch}/>
 
-      {/* weather info */}
-      <p>New york</p>
-      <p>10 °C</p>
-      <p>Cloudy</p>
+      {weather && (
+        <WeatherData 
+          city={weather.name}
+          temp={weather.main.temp}
+          forecast={weather.weather[0].main}
+        />
+      )}
 
     </div>
   )

@@ -4,13 +4,16 @@ import { use, useState } from "react";
 import fetchData from "./fetch-data";
 import { handleClientScriptLoad } from "next/script";
 
-export default function SearchCity(){
+export default function SearchCity({onSearch}){
 
     const [city, setCity] = useState('');
 
     handleOnCityChange = (e) => {
         setCity(e.target.value);
-        fetchData(e);
+    }
+
+    handleSearch = () => {
+        onSearch(city);
     }
 
     return(
@@ -21,7 +24,7 @@ export default function SearchCity(){
                 value={city}
                 onChange={handleOnCityChange(city)}
             />
-            <button onClick={getWeather}>Get Weather</button>
+            <button onClick={handleSearch}>Get Weather</button>
         </div>
     )
 }
