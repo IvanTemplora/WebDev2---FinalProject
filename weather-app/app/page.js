@@ -24,11 +24,9 @@ export default function Home() {
 
   return (
     <div className='text-white'>
-      {/* header */}
+      
       <header>Weather app</header>
-
       <SearchCity onSearch={handleSearch}/>
-
       {weather && (
         <WeatherData 
           city={weather.name}
