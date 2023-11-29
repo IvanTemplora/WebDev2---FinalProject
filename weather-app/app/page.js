@@ -13,7 +13,7 @@ export default function Home() {
 
   const [weather, setWeather] = useState(null);
 
-  const handleSearch = () => {
+  const handleSearch = (city) => {
     fetch(`${api.baseURL}weather?q=${city}&units=metric&APPID=${api.key}`)
     .then(res => res.json())
     .then((result) => {

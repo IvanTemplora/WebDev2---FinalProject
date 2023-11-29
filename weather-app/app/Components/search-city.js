@@ -1,18 +1,13 @@
 "use client";
 
 import { use, useState } from "react";
-import fetchData from "./fetch-data";
 import { handleClientScriptLoad } from "next/script";
 
 export default function SearchCity({onSearch}){
 
     const [city, setCity] = useState('');
 
-    handleOnCityChange = (e) => {
-        setCity(e.target.value);
-    }
-
-    handleSearch = () => {
+    const handleSearch = () => {
         onSearch(city);
     }
 
@@ -22,7 +17,8 @@ export default function SearchCity({onSearch}){
                 type='text'
                 placeholder="Enter City Name"
                 value={city}
-                onChange={handleOnCityChange(city)}
+                onChange={(e) => setCity(e.target.value)}
+                className="text-black"
             />
             <button onClick={handleSearch}>Get Weather</button>
         </div>
