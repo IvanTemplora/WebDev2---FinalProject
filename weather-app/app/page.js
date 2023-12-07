@@ -23,9 +23,9 @@ export default function Home() {
   }
 
   return (
-    <div className='text-white text-center border-2 rounded mx-auto my-auto p-4 w-max bg-green-900'>
+    <div className="text-white text-center border-2 rounded mx-auto my-auto p-4 w-max bg-green-900">
       
-      <header className='text-2xl font-bold py-4'>Ivan's Weather app</header>
+      <header className="text-2xl font-bold py-4">Ivan's Weather app</header>
 
       <div className="flex flex-col items-center bg-green-800 p-3 rounded">
         <SearchCity onSearch={handleSearch}/>
